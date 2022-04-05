@@ -1,4 +1,11 @@
 <template>
+<div>
+  <TheHeader @sidenavToggle="displaySidenav = !displaySidenav"/>
+  <TheSidenav
+  :show="displaySidenav"
+  @close="displaySidenav=false"/>
+  <Nuxt />
+
   <div class="home-page">
     <section class="intro">
       <h1>  Get the latest tech news!</h1>
@@ -27,16 +34,27 @@
 
     </section>
   </div>
+  </div>
 </template>
 
 
 <script>
 
 import PostPreview from '@/components/Posts/PostPreview'
+import TheHeader  from '@/components/Navigation/TheHeader'
+import TheSidenav  from '@/components/Navigation/TheSidenav'
+
 export default {
   components: {
-    PostPreview
+    PostPreview,  
+    TheHeader,
+TheSidenav
+  },
+  data() {
+  return {
+    displaySidenav:false 
   }
+}
   
 }
 </script>
@@ -48,6 +66,7 @@ export default {
   position: relative;
   padding: 30px;
   box-sizing: border-box;
+  background-image:url('~/pages/images/main-page-background.jpg');
   background-position: center;
   background-size: cover;
 }
